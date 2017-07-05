@@ -1,3 +1,4 @@
+
 package br.com.justiandre.github.adv.config.server;
 
 import org.springframework.boot.SpringApplication;

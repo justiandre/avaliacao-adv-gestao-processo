@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: ${PORT:${SERVER_PORT:9999}}
 
 management:
   security:
@@ -7,12 +7,14 @@ management:
 
 spring:
   cloud:
-    bus:
-      enabled: true
     config:
       server:
         git:
-          uri: file:/home/justi.andre/dev/github/workshop-microservices/sources/cloud-lab06-sol/config-repo          
+          uri: https://github.com/justiandre/avaliacao-adv-gestao-processo.git
+          default-label: master
+          force-pull: true
+          timeout: 60
+          clone-on-start: true
   rabbitmq:
-    host: localhost
-    port: 5672    
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}

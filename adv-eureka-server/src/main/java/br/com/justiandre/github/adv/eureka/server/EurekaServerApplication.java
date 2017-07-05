@@ -1,4 +1,4 @@
-package cloud.eureka;
+package br.com.justiandre.github.adv.eureka.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

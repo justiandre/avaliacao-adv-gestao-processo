@@ -1,4 +1,4 @@
-package cloud.eureka;
+package br.com.justiandre.github.adv.eureka.server;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

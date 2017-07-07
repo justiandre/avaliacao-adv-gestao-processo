@@ -1,0 +1,24 @@
+server:
+  port: ${PORT:${SERVER_PORT:9999}}
+
+management:
+  security:
+    enabled: false
+    
+logging:
+  level: trace
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/justiandre/avaliacao-adv-gestao-processo.git
+          default-label: master
+          force-pull: true
+          timeout: 60
+          clone-on-start: true
+          search-paths: adv-config-repositorio
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}

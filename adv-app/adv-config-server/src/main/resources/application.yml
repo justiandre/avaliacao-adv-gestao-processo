@@ -18,7 +18,7 @@ spring:
           force-pull: true
           timeout: 60
           clone-on-start: true
-          search-paths: adv-config-repositorio
+          search-paths: adv-app/adv-config-repositorio
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}

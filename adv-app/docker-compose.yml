@@ -1,12 +1,29 @@
 version: '3'
 services:
-  rabbit-mq:
+  adv-rabbit-mq:
     image: rabbitmq:3-management 
     ports:
       - "5671:5671"
       - "5672:5672"
       - "15672:15672"
   adv-config-server:
-    build: adv-config-server/
+    build: adv-config-server/  
+    depends_on:
+      - adv-rabbit-mq      
+    environment:
+      - PORT=9999
+      - RABBIT_MQ_HOST=adv-rabbit-mq
+      - HOST_PARAM_HEALTHCHECK=http://adv-rabbit-mq:15672/#/
     ports:
-      - "9999:8080"    
+      - "9999:9999" 
+  adv-eureka-server:
+    build: adv-eureka-server/
+    depends_on:
+      - adv-config-server
+    environment:
+      - PORT=9998
+      - RABBIT_MQ_HOST=adv-rabbit-mq
+      - HOST_PARAM_HEALTHCHECK=http://adv-config-server:9999/adv-eureka-server/default
+      - CONFIG_SERVER_URI=http://adv-config-server:9999
+    ports:
+      - "9998:9998"

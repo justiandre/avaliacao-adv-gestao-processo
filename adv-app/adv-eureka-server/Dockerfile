@@ -1,9 +1,13 @@
 FROM anapsix/alpine-java:8
 
-ENV PORT 8080
+COPY ./docker/entrypoint.sh /
+COPY ./target/adv-eureka-server.jar /data/
 
-EXPOSE 8080
+RUN \
+    apk update && \ 
+    apk add curl bash && \
+    chmod 777 /entrypoint.sh
 
-COPY ./adv-eureka-server.jar /data/
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/data/adv-eureka-server.jar"]
